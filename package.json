@@ -7,16 +7,18 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
-    "lint": "ng lint",
+    "lint": "./node_modules/sass-lint/bin/sass-lint.js --verbose && ng lint",
     "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^4.0.0",
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
     "@angular/core": "^4.0.0",
     "@angular/forms": "^4.0.0",
     "@angular/http": "^4.0.0",
+    "@angular/material": "2.0.0-beta.5",
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
@@ -39,6 +41,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "karma-coverage-istanbul-reporter": "^0.2.0",
     "protractor": "~5.1.0",
+    "sass-lint": "^1.10.2",
     "ts-node": "~2.0.0",
     "tslint": "~4.5.0",
     "typescript": "~2.2.0"
