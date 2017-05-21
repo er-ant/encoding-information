@@ -1,24 +1,55 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { NgModule } from '@angular/core';
+import { HttpModule, Http } from '@angular/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+// Material
+import { MaterialModule } from '@angular/material';
+import { MdButtonModule } from '@angular/material';
+import { MdIconModule } from '@angular/material';
+import { MdMenuModule } from '@angular/material';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { CesarCodingComponent } from './components/cesar-coding/cesar-coding.component';
+import { CodingPageHeaderComponent } from './components/coding-page-header/coding-page-header.component';
+
+export function HttpLoaderFactory(http: Http) {
+    return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    NavbarComponent,
+    CesarCodingComponent,
+    CodingPageHeaderComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [Http]
+      }
+    }),
+
+    // Material Modules
+    MaterialModule,
+    MdButtonModule,
+    MdIconModule,
+    MdMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
