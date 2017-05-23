@@ -9,15 +9,21 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 // Material
 import { MaterialModule } from '@angular/material';
 import { MdButtonModule } from '@angular/material';
+import { MdCardModule } from '@angular/material';
 import { MdIconModule } from '@angular/material';
 import { MdMenuModule } from '@angular/material';
+import { MdSelectModule } from '@angular/material';
+import { MdSliderModule } from '@angular/material';
 
+// Custom
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CesarCodingComponent } from './components/cesar-coding/cesar-coding.component';
 import { CodingPageHeaderComponent } from './components/coding-page-header/coding-page-header.component';
+
+import { CesarCypherService } from './services/cesar-cypher.service';
 
 export function HttpLoaderFactory(http: Http) {
     return new TranslateHttpLoader(http);
@@ -48,10 +54,15 @@ export function HttpLoaderFactory(http: Http) {
     // Material Modules
     MaterialModule,
     MdButtonModule,
+    MdCardModule,
     MdIconModule,
-    MdMenuModule
+    MdMenuModule,
+    MdSelectModule,
+    MdSliderModule
   ],
-  providers: [],
+  providers: [
+    CesarCypherService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
