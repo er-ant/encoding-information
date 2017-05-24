@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CesarCodingComponent } from './components/cesar-coding/cesar-coding.component';
+import { CesarCodingWithKeyComponent } from './components/cesar-coding-with-key/cesar-coding-with-key.component';
 
 const routes: Routes = [
   {
@@ -14,6 +16,9 @@ const routes: Routes = [
   }, {
     path: 'cesar',
     component: CesarCodingComponent,
+  }, {
+    path: 'cesar/key',
+    component: CesarCodingWithKeyComponent
   }, {
     path: '**',
     redirectTo: '/dashboard'

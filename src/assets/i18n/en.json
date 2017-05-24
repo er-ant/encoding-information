@@ -8,5 +8,9 @@
   },
   "cesar": {
     "name": "Cesar's cypher"
+  },
+  "cesarWithKey": {
+    "name": "Cesar's cypher with key",
+    "inputKey": "Input key"
   }
 }

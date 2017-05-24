@@ -4,16 +4,17 @@ import { CesarCypherService } from '../../services/cesar-cypher.service';
 import { RUALPHABET, ENALPHABET } from '../../config/alphabets';
 
 @Component({
-  selector: 'app-cesar-coding',
-  templateUrl: './cesar-coding.component.html',
-  styleUrls: ['./cesar-coding.component.scss']
+  selector: 'app-cesar-coding-with-key',
+  templateUrl: './cesar-coding-with-key.component.html',
+  styleUrls: ['./cesar-coding-with-key.component.scss']
 })
-export class CesarCodingComponent implements OnInit {
+export class CesarCodingWithKeyComponent implements OnInit {
 
   public alphabet: any;
   public encryptedText: string;
+  public key: string;
   public text: string;
-  public title = 'cesar';
+  public title = 'cesarWithKey';
 
   public alphabets = [
     {
@@ -27,8 +28,6 @@ export class CesarCodingComponent implements OnInit {
     }
   ];
 
-  public shift = 1;
-
   constructor(private cesarService: CesarCypherService) { }
 
   ngOnInit() {
@@ -41,7 +40,6 @@ export class CesarCodingComponent implements OnInit {
 
   public encrypt() {
     this.encryptedText =
-      this.cesarService.getEncrypted(this.shift, this.text, this.getAlphabet());
+      this.cesarService.getEncryptedWithKey(this.key, this.text, RUALPHABET);
   };
-
 }

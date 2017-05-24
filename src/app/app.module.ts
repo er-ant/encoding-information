@@ -21,6 +21,7 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CesarCodingComponent } from './components/cesar-coding/cesar-coding.component';
+import { CesarCodingWithKeyComponent } from './components/cesar-coding-with-key/cesar-coding-with-key.component';
 import { CodingPageHeaderComponent } from './components/coding-page-header/coding-page-header.component';
 
 import { CesarCypherService } from './services/cesar-cypher.service';
@@ -35,6 +36,7 @@ export function HttpLoaderFactory(http: Http) {
     DashboardComponent,
     NavbarComponent,
     CesarCodingComponent,
+    CesarCodingWithKeyComponent,
     CodingPageHeaderComponent
   ],
   imports: [
