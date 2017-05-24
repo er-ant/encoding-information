@@ -1,0 +1,16 @@
+{
+  "app": {
+    "chooseAlphabet": "Choose the alphabet",
+    "shift": "Shift",
+    "encode": "Encode",
+    "inputText": "Input text",
+    "title": "Encoding information"
+  },
+  "cesar": {
+    "name": "Cesar's cypher"
+  },
+  "cesarWithKey": {
+    "name": "Cesar's cypher with key",
+    "inputKey": "Input key"
+  }
+}
