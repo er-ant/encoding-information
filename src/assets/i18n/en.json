@@ -12,5 +12,10 @@
   "cesarWithKey": {
     "name": "Cesar's cypher with key",
     "inputKey": "Input key"
+  },
+  "vigenere": {
+    "codes": "By character codes",
+    "name": "Vigenere's cypher",
+    "inputKey": "Input key"
   }
 }

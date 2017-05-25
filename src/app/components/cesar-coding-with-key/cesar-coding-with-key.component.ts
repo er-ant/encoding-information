@@ -40,6 +40,6 @@ export class CesarCodingWithKeyComponent implements OnInit {
 
   public encrypt() {
     this.encryptedText =
-      this.cesarService.getEncryptedWithKey(this.key, this.text, RUALPHABET);
+      this.cesarService.getEncryptedWithKey(this.key, this.text, this.getAlphabet());
   };
 }

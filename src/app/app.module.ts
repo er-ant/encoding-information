@@ -14,6 +14,7 @@ import { MdIconModule } from '@angular/material';
 import { MdMenuModule } from '@angular/material';
 import { MdSelectModule } from '@angular/material';
 import { MdSliderModule } from '@angular/material';
+import { MdSlideToggleModule } from '@angular/material';
 
 // Custom
 import { AppRoutingModule } from './app-routing.module';
@@ -23,8 +24,10 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { CesarCodingComponent } from './components/cesar-coding/cesar-coding.component';
 import { CesarCodingWithKeyComponent } from './components/cesar-coding-with-key/cesar-coding-with-key.component';
 import { CodingPageHeaderComponent } from './components/coding-page-header/coding-page-header.component';
+import { VigenereCodingComponent } from './components/vigenere-coding/vigenere-coding.component';
 
 import { CesarCypherService } from './services/cesar-cypher.service';
+import { VigenereCypherService } from './services/vigenere-cypher.service';
 
 export function HttpLoaderFactory(http: Http) {
     return new TranslateHttpLoader(http);
@@ -37,7 +40,8 @@ export function HttpLoaderFactory(http: Http) {
     NavbarComponent,
     CesarCodingComponent,
     CesarCodingWithKeyComponent,
-    CodingPageHeaderComponent
+    CodingPageHeaderComponent,
+    VigenereCodingComponent
   ],
   imports: [
     AppRoutingModule,
@@ -60,10 +64,12 @@ export function HttpLoaderFactory(http: Http) {
     MdIconModule,
     MdMenuModule,
     MdSelectModule,
-    MdSliderModule
+    MdSliderModule,
+    MdSlideToggleModule
   ],
   providers: [
-    CesarCypherService
+    CesarCypherService,
+    VigenereCypherService
   ],
   bootstrap: [AppComponent]
 })
