@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { CesarCypherService } from '../../services/cesar-cypher.service';
+import { CesarCypherService, ICesarWithKeyResponse } from '../../services/cesar-cypher.service';
 import { RUALPHABET, ENALPHABET } from '../../config/alphabets';
 
 @Component({
@@ -39,7 +39,9 @@ export class CesarCodingWithKeyComponent implements OnInit {
   }
 
   public encrypt() {
-    this.encryptedText =
-      this.cesarService.getEncryptedWithKey(this.key, this.text, this.getAlphabet());
+    this
+      .cesarService
+      .getEncryptedWithKey(this.key, this.text, this.getAlphabet())
+      .subscribe(res => this.encryptedText = res.encryptedText);
   };
 }

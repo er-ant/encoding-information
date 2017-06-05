@@ -7,7 +7,9 @@
     "title": "Encoding information"
   },
   "cesar": {
-    "name": "Cesar's cypher"
+    "name": "Cesar's cypher",
+    "step": "Step",
+    "text": "Text"
   },
   "cesarWithKey": {
     "name": "Cesar's cypher with key",

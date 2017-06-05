@@ -1,8 +1,14 @@
 // You can add global styles to this file, and also import other style files
 
+$background-striped-row-color: #eee;
+
 body {
   height: 100%;
   margin: 0;
   position: absolute;
   width: 100%;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+  background-color: $background-striped-row-color;
 }

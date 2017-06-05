@@ -17,8 +17,7 @@ export class VigenereCypherService {
     return position;
   }
 
-  public getEncrypted(key: string, text: string,
-                      alphabet: Array<string>): string {
+  public getEncrypted(key: string, text: string, alphabet: Array<string>): string {
     let encryptedText = '';
     let iterator = 0;
     let keyPositions: Array<number> = [];
