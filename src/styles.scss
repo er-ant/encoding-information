@@ -12,3 +12,19 @@ body {
 .table-striped>tbody>tr:nth-of-type(odd) {
   background-color: $background-striped-row-color;
 }
+
+.mt50 {
+  margin-top: 50px
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
+.ml0 {
+  margin-left: 0;
+}

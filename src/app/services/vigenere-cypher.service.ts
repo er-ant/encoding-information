@@ -1,5 +1,19 @@
 import { Injectable } from '@angular/core';
 
+import { Observable, Observer } from 'rxjs';
+
+export interface IVigenereResponse {
+  originalLetter: IVigenereLetter;
+  keyLetter: IVigenereLetter;
+  encryptedLetter: IVigenereLetter;
+  encryptedText: string;
+}
+
+export interface IVigenereLetter {
+  word: string;
+  number: number;
+}
+
 @Injectable()
 export class VigenereCypherService {
 
@@ -8,7 +22,7 @@ export class VigenereCypherService {
   private getWordPosition(alphabet: Array<string>, word: string): number {
     let position: number;
 
-    alphabet.forEach((wordByArray, index) => {
+    alphabet.forEach((wordByArray: string, index: number) => {
       if (wordByArray === word) {
         position = index;
       }
@@ -17,34 +31,71 @@ export class VigenereCypherService {
     return position;
   }
 
-  public getEncrypted(key: string, text: string, alphabet: Array<string>): string {
+  public getEncrypted(key: string, text: string, alphabet: Array<string>): Observable<IVigenereResponse> {
     let encryptedText = '';
+    let encryptedLetter: string;
     let iterator = 0;
-    let keyPositions: Array<number> = [];
-    let textPositions: Array<number> = [];
+    let keyWordPosition: number;
+    let textWordposition: number;
+    let keyArray: Array<string>;
+    let textArray: Array<string>;
+    let responseObject: IVigenereResponse;
 
-    key.split('').forEach(word => {
-      keyPositions.push(this.getWordPosition(alphabet, word));
+    return Observable.create((observer: Observer<IVigenereResponse>) => {
+      keyArray =
+        key.split('').filter(word => word !== ' ' && this.getWordPosition(alphabet, word) >= 0);
+      textArray =
+        text.split('').filter(word => word !== ' ');
+      responseObject = Object.assign({});
+
+      textArray.forEach((textWord: string, index: number) => {
+        textWordposition = this.getWordPosition(alphabet, textWord);
+        if (textWordposition >= 0) {
+          if (keyArray.length < iterator) {
+            iterator = 0;
+          }
+
+          keyWordPosition = this.getWordPosition(alphabet, keyArray[iterator]);
+
+          if (alphabet.length >= (textWordposition + keyWordPosition)) {
+            encryptedLetter = alphabet[textWordposition + keyWordPosition];
+            encryptedText += encryptedLetter;
+          } else {
+            encryptedLetter = alphabet[textWordposition + keyWordPosition - alphabet.length];
+            encryptedText += encryptedLetter;
+          }
+
+          responseObject.originalLetter = {
+            word: textWord,
+            number: textWordposition + 1
+          };
+          responseObject.keyLetter = {
+            word: keyArray[iterator],
+            number: keyWordPosition + 1
+          };
+          responseObject.encryptedLetter = {
+            word: encryptedLetter,
+            number: this.getWordPosition(alphabet, encryptedLetter) + 1
+          };
+          responseObject.encryptedText =
+            encryptedText + textArray.join('').slice(index + 1, textArray.length);
+
+          iterator++;
+        } else {
+          responseObject.originalLetter = Object.assign({});
+          responseObject.encryptedLetter = Object.assign({});
+          encryptedText += textWord;
+          responseObject.originalLetter.word = textWord;
+          responseObject.encryptedLetter.word = textWord;
+          responseObject.encryptedText =
+            encryptedText + textArray.join('').slice(index + 1, textArray.length);
+        }
+        observer.next(responseObject);
+        responseObject = <IVigenereResponse>{};
+      });
+
+      observer.complete();
     });
-
-    text.split('').forEach(word => {
-      textPositions.push(this.getWordPosition(alphabet, word));
-    });
-
-    textPositions.forEach(position => {
-      let newPosition: number;
-      if (keyPositions.length <= iterator) {
-        iterator = 0;
-      }
-      if (alphabet.length >= (position + keyPositions[iterator])) {
-        encryptedText += alphabet[position + keyPositions[iterator]];
-      } else {
-        encryptedText += alphabet[position + keyPositions[iterator] - alphabet.length];
-      }
-      iterator++;
-    });
-
-    return encryptedText;
   }
 
   public getEncryptedWithCodes(key: string, text: string,

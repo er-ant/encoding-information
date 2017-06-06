@@ -17,7 +17,12 @@
   },
   "vigenere": {
     "codes": "By character codes",
+    "encryptedLetter": "Encrypted letter",
+    "encryptedText": "Encrypted text",
+    "inputKey": "Input key",
+    "keyLetter": "Letter from the key",
     "name": "Vigenere's cypher",
-    "inputKey": "Input key"
+    "originalLetter": "Original letter",
+    "step": "Step"
   }
 }

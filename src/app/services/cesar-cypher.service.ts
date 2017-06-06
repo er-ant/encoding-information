@@ -64,9 +64,10 @@ export class CesarCypherService {
   public partEncrypting(shift: number, text: string, alphabet: Array<string>): Observable<ICesarResponse> {
     let position: number;
     let bufferText = '';
-    let responseObject: ICesarResponse = Object.assign({});
+    let responseObject: ICesarResponse;
 
     return Observable.create((observer: Observer<ICesarResponse>) => {
+      responseObject = Object.assign({});
       text.split('').forEach((word: string, index: number) => {
         bufferText += this.getEncryptedWord(shift, alphabet, word);
         responseObject.index = index + 1;

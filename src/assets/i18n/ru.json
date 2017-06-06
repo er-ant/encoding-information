@@ -18,6 +18,11 @@
   "vigenere": {
     "codes": "По кодам символов",
     "name": "Шифр Виженера",
-    "inputKey": "Введите ключ"
+    "inputKey": "Введите ключ",
+    "encryptedLetter": "Зашифрованная буква",
+    "encryptedText": "Зашифрованный текст",
+    "keyLetter": "Буква из ключа",
+    "originalLetter": "Оригинальная буква",
+    "step": "Шаг"
   }
 }

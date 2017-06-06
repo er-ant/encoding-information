@@ -20,6 +20,8 @@ export class VigenereCodingComponent implements OnInit {
   public color = 'warn';
   public checked = false;
 
+  public steps = [];
+
   public alphabets = [
     {
       value: 'ru',
@@ -42,12 +44,22 @@ export class VigenereCodingComponent implements OnInit {
   }
 
   public encrypt() {
+    this.steps = [];
     if (this.checked) {
       this.encryptedText =
         this.vigenereService.getEncryptedWithCodes(this.key, this.text, this.getAlphabet());
     } else {
-      this.encryptedText =
-        this.vigenereService.getEncrypted(this.key, this.text, this.getAlphabet());
+      this
+        .vigenereService
+        .getEncrypted(this.key, this.text, this.getAlphabet())
+        .subscribe(
+          res => {
+            this.steps.push(res);
+            if (this.steps[this.text.length - 1]) {
+              this.encryptedText = this.steps[this.text.length - 1].encryptedText;
+            }
+          }
+        )
     }
 
   };
