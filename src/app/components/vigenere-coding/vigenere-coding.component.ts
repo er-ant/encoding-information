@@ -46,8 +46,17 @@ export class VigenereCodingComponent implements OnInit {
   public encrypt() {
     this.steps = [];
     if (this.checked) {
-      this.encryptedText =
-        this.vigenereService.getEncryptedWithCodes(this.key, this.text, this.getAlphabet());
+      this
+        .vigenereService
+        .getEncryptedWithCodes(this.key, this.text, this.getAlphabet())
+        .subscribe(
+          res => {
+            this.steps.push(res);
+            if (this.steps[this.text.length - 1]) {
+              this.encryptedText = this.steps[this.text.length - 1].encryptedText;
+            }
+          }
+        )
     } else {
       this
         .vigenereService

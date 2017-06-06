@@ -31,7 +31,8 @@ export class VigenereCypherService {
     return position;
   }
 
-  public getEncrypted(key: string, text: string, alphabet: Array<string>): Observable<IVigenereResponse> {
+  public getEncrypted(key: string, text: string, alphabet: Array<string>):
+  Observable<IVigenereResponse> {
     let encryptedText = '';
     let encryptedLetter: string;
     let iterator = 0;
@@ -98,35 +99,74 @@ export class VigenereCypherService {
     });
   }
 
-  public getEncryptedWithCodes(key: string, text: string,
-                               alphabet: Array<string>): string {
+  public getEncryptedWithCodes(key: string, text: string, alphabet: Array<string>):
+  Observable<IVigenereResponse> {
     let encryptedText = '';
+    let encryptedLetter: string;
     let iterator = 0;
+    let keyWordPosition: number;
+    let textWordposition: number;
     let keyCodes: Array<number> = [];
     let maxSymbols = 256;
     let textCodes: Array<number> = [];
+    let keyArray: Array<string>;
+    let textArray: Array<string>;
+    let responseObject: IVigenereResponse;
 
-    key.split('').forEach(word => {
-      keyCodes.push(word.charCodeAt(0));
+    return Observable.create((observer: Observer<IVigenereResponse>) => {
+      keyArray =
+        key.split('').filter(word => word !== ' ' && this.getWordPosition(alphabet, word) >= 0);
+      textArray =
+        text.split('').filter(word => word !== ' ');
+      responseObject = Object.assign({});
+
+      textArray.forEach((textWord: string, index: number) => {
+        textWordposition = textWord.charCodeAt(0);
+        if (textWordposition >= 0) {
+          if (keyArray.length < iterator) {
+            iterator = 0;
+          }
+
+          keyWordPosition = keyArray[iterator].charCodeAt(0);
+
+          if (maxSymbols >= (textWordposition + keyWordPosition)) {
+            encryptedLetter = String.fromCharCode(textWordposition + keyWordPosition);
+            encryptedText += encryptedLetter;
+          } else {
+            encryptedLetter = String.fromCharCode(textWordposition + keyWordPosition - maxSymbols)
+            encryptedText += encryptedLetter;
+          }
+
+          responseObject.originalLetter = {
+            word: textWord,
+            number: textWordposition
+          };
+          responseObject.keyLetter = {
+            word: keyArray[iterator],
+            number: keyWordPosition
+          };
+          responseObject.encryptedLetter = {
+            word: encryptedLetter,
+            number: encryptedLetter.charCodeAt(0)
+          };
+          responseObject.encryptedText =
+            encryptedText + textArray.join('').slice(index + 1, textArray.length);
+
+          iterator++;
+        } else {
+          responseObject.originalLetter = Object.assign({});
+          responseObject.encryptedLetter = Object.assign({});
+          encryptedText += textWord;
+          responseObject.originalLetter.word = textWord;
+          responseObject.encryptedLetter.word = textWord;
+          responseObject.encryptedText =
+          encryptedText + textArray.join('').slice(index + 1, textArray.length);
+        }
+        observer.next(responseObject);
+        responseObject = <IVigenereResponse>{};
+      });
+
+      observer.complete();
     });
-
-    text.split('').forEach(word => {
-      textCodes.push(word.charCodeAt(0));
-    });
-
-    textCodes.forEach(position => {
-      let newPosition: number;
-      if (keyCodes.length <= iterator) {
-        iterator = 0;
-      }
-      if (maxSymbols >= (position + keyCodes[iterator])) {
-        encryptedText += String.fromCharCode(position + keyCodes[iterator]);
-      } else {
-        encryptedText += String.fromCharCode(position + keyCodes[iterator] - maxSymbols);
-      }
-      iterator++;
-    });
-
-    return encryptedText;
   }
 }
