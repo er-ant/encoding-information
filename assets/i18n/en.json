@@ -7,10 +7,22 @@
     "title": "Encoding information"
   },
   "cesar": {
-    "name": "Cesar's cypher"
+    "name": "Cesar's cypher",
+    "step": "Step",
+    "text": "Text"
   },
   "cesarWithKey": {
     "name": "Cesar's cypher with key",
     "inputKey": "Input key"
+  },
+  "vigenere": {
+    "codes": "By character codes",
+    "encryptedLetter": "Encrypted letter",
+    "encryptedText": "Encrypted text",
+    "inputKey": "Input key",
+    "keyLetter": "Letter from the key",
+    "name": "Vigenere's cypher",
+    "originalLetter": "Original letter",
+    "step": "Step"
   }
 }
