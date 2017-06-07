@@ -30,7 +30,7 @@ import { CesarCypherService } from './services/cesar-cypher.service';
 import { VigenereCypherService } from './services/vigenere-cypher.service';
 
 export function HttpLoaderFactory(http: Http) {
-    return new TranslateHttpLoader(http);
+    return new TranslateHttpLoader(http, '/encoding-information/assets/i18n/');
 }
 
 @NgModule({

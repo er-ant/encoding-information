@@ -9,7 +9,7 @@ import { VigenereCodingComponent } from './components/vigenere-coding/vigenere-c
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '/cesar',
     pathMatch: 'full'
   }, {
     path: 'dashboard',
