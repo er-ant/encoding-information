@@ -23,7 +23,7 @@ export class VigenereCypherService {
     let position: number;
 
     alphabet.forEach((wordByArray: string, index: number) => {
-      if (wordByArray === word) {
+      if (wordByArray === word.toLowerCase()) {
         position = index;
       }
     });
@@ -52,13 +52,13 @@ export class VigenereCypherService {
       textArray.forEach((textWord: string, index: number) => {
         textWordposition = this.getWordPosition(alphabet, textWord);
         if (textWordposition >= 0) {
-          if (keyArray.length < iterator) {
+          if (keyArray.length <= iterator) {
             iterator = 0;
           }
 
           keyWordPosition = this.getWordPosition(alphabet, keyArray[iterator]);
 
-          if (alphabet.length > (textWordposition + keyWordPosition)) {
+          if (alphabet.length > (textWordposition + keyWordPosition + 1)) {
             encryptedLetter = alphabet[textWordposition + keyWordPosition + 1];
             encryptedText += encryptedLetter;
           } else {
@@ -123,7 +123,7 @@ export class VigenereCypherService {
       textArray.forEach((textWord: string, index: number) => {
         textWordposition = textWord.charCodeAt(0);
         if (textWordposition >= 0) {
-          if (keyArray.length < iterator) {
+          if (keyArray.length <= iterator) {
             iterator = 0;
           }
 
