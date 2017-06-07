@@ -58,11 +58,11 @@ export class VigenereCypherService {
 
           keyWordPosition = this.getWordPosition(alphabet, keyArray[iterator]);
 
-          if (alphabet.length >= (textWordposition + keyWordPosition)) {
-            encryptedLetter = alphabet[textWordposition + keyWordPosition];
+          if (alphabet.length > (textWordposition + keyWordPosition)) {
+            encryptedLetter = alphabet[textWordposition + keyWordPosition + 1];
             encryptedText += encryptedLetter;
           } else {
-            encryptedLetter = alphabet[textWordposition + keyWordPosition - alphabet.length];
+            encryptedLetter = alphabet[textWordposition + keyWordPosition + 1 - alphabet.length];
             encryptedText += encryptedLetter;
           }
 

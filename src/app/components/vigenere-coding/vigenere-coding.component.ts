@@ -25,7 +25,7 @@ export class VigenereCodingComponent implements OnInit {
   public alphabets = [
     {
       value: 'ru',
-      name: 'Русский',
+      name: 'Русский (с ё)',
       alphabet: RUALPHABET
     }, {
       value: 'en',
