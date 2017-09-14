@@ -53,7 +53,7 @@ export class CesarCodingComponent implements OnInit {
             this.encryptedText = this.steps[this.text.length - 1].encryptedText;
           }
         }
-      )
+      );
   };
 
 }

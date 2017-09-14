@@ -1,26 +1,28 @@
 <app-coding-page-header [heading]="title"></app-coding-page-header>
 <div class="col-sm-12">
-  <md-card class="card col-sm-4">
-    <md-card-content>
-      <md-input-container class="full-width mb20">
-        <textarea class="textarea-vertical" mdInput placeholder="{{ 'app.inputText' | translate}}" [(ngModel)]="text"></textarea>
-      </md-input-container>
-      <md-select placeholder="{{ 'app.chooseAlphabet' | translate}}" class="full-width mb20" [(ngModel)]="alphabet">
-        <md-option *ngFor="let alphabet of alphabets" [value]="alphabet.value">
-          {{alphabet.name}}
-        </md-option>
-      </md-select>
-      <md-input-container class="full-width font-size-normal mb10">
-        <input mdInput [min]="0" type="number" placeholder="{{ 'app.shift' | translate}}" [(ngModel)]="shift">
-      </md-input-container>
-      <md-input-container class="full-width">
-        <textarea class="textarea-vertical" mdInput>{{encryptedText}}</textarea>
-      </md-input-container>
-    </md-card-content>
-    <md-card-actions class="ml0">
-      <button md-button (click)="encrypt()" [disabled]="!shift || !alphabet || !text">{{ 'app.encode' | translate}}</button>
-    </md-card-actions>
-  </md-card>
+  <div class="col-sm-4">
+    <md-card class="card col-sm-4">
+      <md-card-content>
+        <md-input-container class="full-width mb20">
+          <textarea class="textarea-vertical" mdInput placeholder="{{ 'app.inputText' | translate}}" [(ngModel)]="text"></textarea>
+        </md-input-container>
+        <md-select placeholder="{{ 'app.chooseAlphabet' | translate}}" class="full-width mb20" [(ngModel)]="alphabet">
+          <md-option *ngFor="let alphabet of alphabets" [value]="alphabet.value">
+            {{alphabet.name}}
+          </md-option>
+        </md-select>
+        <md-input-container class="full-width font-size-normal mb10">
+          <input mdInput [min]="0" type="number" placeholder="{{ 'app.shift' | translate}}" [(ngModel)]="shift">
+        </md-input-container>
+        <md-input-container class="full-width">
+          <textarea class="textarea-vertical" mdInput>{{encryptedText}}</textarea>
+        </md-input-container>
+      </md-card-content>
+      <md-card-actions class="ml0">
+        <button md-button (click)="encrypt()" [disabled]="!shift || !alphabet || !text">{{ 'app.encode' | translate}}</button>
+      </md-card-actions>
+    </md-card>
+  </div>
   <div class="col-sm-8 mt50">
     <table class="table table-striped table-bordered">
       <thead>

@@ -2,9 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
-import { HttpModule, Http } from '@angular/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 // Material
 import { MaterialModule } from '@angular/material';
@@ -29,9 +28,7 @@ import { VigenereCodingComponent } from './components/vigenere-coding/vigenere-c
 import { CesarCypherService } from './services/cesar-cypher.service';
 import { VigenereCypherService } from './services/vigenere-cypher.service';
 
-export function HttpLoaderFactory(http: Http) {
-    return new TranslateHttpLoader(http);
-}
+import { HttpLoaderFactory } from './translate-loader';
 
 @NgModule({
   declarations: [
@@ -48,12 +45,12 @@ export function HttpLoaderFactory(http: Http) {
     BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [Http]
+        deps: [HttpClient]
       }
     }),
 

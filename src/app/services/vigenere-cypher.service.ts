@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, Observer } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
 
 export interface IVigenereResponse {
   originalLetter: IVigenereLetter;
@@ -133,7 +134,7 @@ export class VigenereCypherService {
             encryptedLetter = String.fromCharCode(textWordposition + keyWordPosition);
             encryptedText += encryptedLetter;
           } else {
-            encryptedLetter = String.fromCharCode(textWordposition + keyWordPosition - maxSymbols)
+            encryptedLetter = String.fromCharCode(textWordposition + keyWordPosition - maxSymbols);
             encryptedText += encryptedLetter;
           }
 
