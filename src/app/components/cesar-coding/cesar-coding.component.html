@@ -1,7 +1,6 @@
 <app-coding-page-header [heading]="title"></app-coding-page-header>
-<div class="col-sm-12">
-  <div class="col-sm-4">
-    <md-card class="card col-sm-4">
+<div class="flex-container">
+    <md-card class="card">
       <md-card-content>
         <md-input-container class="full-width mb20">
           <textarea class="textarea-vertical" mdInput placeholder="{{ 'app.inputText' | translate}}" [(ngModel)]="text"></textarea>
@@ -15,36 +14,26 @@
           <input mdInput [min]="0" type="number" placeholder="{{ 'app.shift' | translate}}" [(ngModel)]="shift">
         </md-input-container>
         <md-input-container class="full-width">
-          <textarea class="textarea-vertical" mdInput>{{encryptedText}}</textarea>
+          <textarea class="textarea-vertical" mdInput [disabled]="!encryptedText">{{encryptedText}}</textarea>
         </md-input-container>
       </md-card-content>
       <md-card-actions class="ml0">
         <button md-button (click)="encrypt()" [disabled]="!shift || !alphabet || !text">{{ 'app.encode' | translate}}</button>
       </md-card-actions>
     </md-card>
-  </div>
-  <div class="col-sm-8 mt50">
-    <table class="table table-striped table-bordered">
-      <thead>
-        <tr>
-          <th>
-            {{ 'cesar.step' | translate}}
-          </th>
-          <th>
-            {{ 'cesar.text' | translate}}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let step of steps">
-          <td>
-            {{step.index}}
-          </td>
-          <td>
-            {{step.encryptedText}}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="table-container">
+    <md-table #table [dataSource]="dataSource">
+      <ng-container mdColumnDef="step">
+        <md-header-cell *mdHeaderCellDef> {{ 'cesar.step' | translate}} </md-header-cell>
+        <md-cell *mdCellDef="let element"> {{element.index}} </md-cell>
+      </ng-container>
+      <ng-container mdColumnDef="encryptedText">
+        <md-header-cell *mdHeaderCellDef> {{ 'cesar.text' | translate}} </md-header-cell>
+        <md-cell *mdCellDef="let element"> {{element.encryptedText}} </md-cell>
+      </ng-container>
+
+      <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+      <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+    </md-table>
   </div>
 </div>

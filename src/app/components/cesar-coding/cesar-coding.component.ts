@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { DataSource } from '@angular/cdk/collections';
+
+import { Subject } from 'rxjs/Subject';
 
 import { CesarCypherService, ICesarResponse } from '../../services/cesar-cypher.service';
 import { RUALPHABET, ENALPHABET } from '../../config/alphabets';
@@ -8,14 +11,14 @@ import { RUALPHABET, ENALPHABET } from '../../config/alphabets';
   templateUrl: './cesar-coding.component.html',
   styleUrls: ['./cesar-coding.component.scss']
 })
-export class CesarCodingComponent implements OnInit {
+export class CesarCodingComponent {
 
-  public alphabet: any;
-  public encryptedText: string;
-  public text: string;
-  public title = 'cesar';
+  stepEmitter: Subject<any> = new Subject();
 
-  public alphabets = [
+  displayedColumns = ['step', 'encryptedText'];
+  dataSource = new TableDataSource(this.stepEmitter);
+
+  alphabets = [
     {
       value: 'ru',
       name: 'Русский',
@@ -27,33 +30,47 @@ export class CesarCodingComponent implements OnInit {
     }
   ];
 
-  public shift = 1;
+  alphabet = this.alphabets[0].value;
+  encryptedText: string;
+  text: string;
+  title = 'cesar';
 
-  public steps = [];
+  shift = 1;
+
+  steps = [];
 
   constructor(private cesarService: CesarCypherService) { }
-
-  ngOnInit() {
-
-  }
 
   private getAlphabet(): Array<string> {
     return this.alphabets.find(alphabet => this.alphabet === alphabet.value).alphabet;
   }
 
-  public encrypt() {
+  encrypt() {
     this.steps = [];
-    this
-      .cesarService
+    this.cesarService
       .partEncrypting(this.shift, this.text, this.getAlphabet())
       .subscribe(
         res => {
           this.steps.push(res);
-          if (this.steps[this.text.length - 1]) {
-            this.encryptedText = this.steps[this.text.length - 1].encryptedText;
-          }
-        }
+          this.stepEmitter.next(this.steps);
+        },
+        () => {},
+        () => this.encryptedText = this.steps[this.steps.length - 1].encryptedText
       );
   };
 
+}
+
+export class TableDataSource extends DataSource<any> {
+  constructor(public dataObserv: Subject<ICesarResponse[]>) {
+    super();
+  }
+
+  connect(): Subject<ICesarResponse[]> {
+    return this.dataObserv;
+  }
+
+  disconnect() {
+    this.dataObserv.unsubscribe();
+  }
 }

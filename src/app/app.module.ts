@@ -12,8 +12,9 @@ import { MdCardModule } from '@angular/material';
 import { MdIconModule } from '@angular/material';
 import { MdMenuModule } from '@angular/material';
 import { MdSelectModule } from '@angular/material';
-import { MdSliderModule } from '@angular/material';
 import { MdSlideToggleModule } from '@angular/material';
+import { MdSliderModule } from '@angular/material';
+import { MdTableModule } from '@angular/material';
 
 // Custom
 import { AppRoutingModule } from './app-routing.module';
@@ -61,8 +62,9 @@ import { HttpLoaderFactory } from './translate-loader';
     MdIconModule,
     MdMenuModule,
     MdSelectModule,
+    MdSlideToggleModule,
     MdSliderModule,
-    MdSlideToggleModule
+    MdTableModule
   ],
   providers: [
     CesarCypherService,
