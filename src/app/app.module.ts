@@ -16,6 +16,8 @@ import { MdSlideToggleModule } from '@angular/material';
 import { MdSliderModule } from '@angular/material';
 import { MdTableModule } from '@angular/material';
 
+import 'hammerjs';
+
 // Custom
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
