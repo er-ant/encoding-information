@@ -20,7 +20,7 @@
     "encryptedLetter": "Encrypted letter",
     "encryptedText": "Encrypted text",
     "inputKey": "Input key",
-    "keyLetter": "Letter from the key",
+    "keyLetter": "Key's letter",
     "name": "Vigenere's cypher",
     "originalLetter": "Original letter",
     "step": "Step"

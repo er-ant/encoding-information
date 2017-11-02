@@ -1,71 +1,64 @@
 <app-coding-page-header [heading]="title"></app-coding-page-header>
-<div class="col-sm-12">
-  <md-card class="card col-sm-4">
-    <md-card-content>
-      <md-input-container class="full-width">
-        <textarea class="textarea-vertical" mdInput placeholder="{{ 'app.inputText' | translate}}" [(ngModel)]="text"></textarea>
-      </md-input-container>
-      <md-input-container class="full-width mb20">
-        <textarea class="textarea-vertical" mdInput placeholder="{{ 'vigenere.inputKey' | translate}}" [(ngModel)]="key"></textarea>
-      </md-input-container>
-      <md-select placeholder="{{ 'app.chooseAlphabet' | translate}}" class="full-width mb20" [(ngModel)]="alphabet">
-        <md-option *ngFor="let alphabet of alphabets" [value]="alphabet.value">
-          {{alphabet.name}}
-        </md-option>
-      </md-select>
-      <section class="toggler">
-        <md-slide-toggle [color]="color" [checked]="checked" [(ngModel)]="checked">
-          {{ 'vigenere.codes' | translate}}
-        </md-slide-toggle>
-      </section>
-      <md-input-container class="full-width">
-        <textarea class="textarea-vertical" mdInput>{{encryptedText}}</textarea>
-      </md-input-container>
-    </md-card-content>
-    <md-card-actions class="ml0">
-      <button md-button (click)="encrypt()" [disabled]="!alphabet || !text || !key">{{ 'app.encode' | translate}}</button>
-    </md-card-actions>
+<div class="flex-container">
+  <md-card class="card">
+    <form #cardForm="ngForm" (ngSubmit)="encrypt()">
+      <md-card-content>
+        <md-input-container class="full-width">
+          <textarea class="textarea-vertical" mdInput placeholder="{{ 'app.inputText' | translate }}"
+                    [(ngModel)]="text" name="inputText" required>
+          </textarea>
+        </md-input-container>
+        <md-input-container class="full-width mb20">
+          <textarea class="textarea-vertical" mdInput placeholder="{{ 'vigenere.inputKey' | translate }}"
+                    [(ngModel)]="key" name="key" required>
+          </textarea>
+        </md-input-container>
+        <md-select class="full-width mb20" placeholder="{{ 'app.chooseAlphabet' | translate }}"
+                   [(ngModel)]="alphabet" name="alphabet" required>
+          <md-option *ngFor="let alphabet of alphabets" [value]="alphabet.value">
+            {{ 'alphabets.'+ alphabet.value | translate }}
+          </md-option>
+        </md-select>
+        <section class="toggler">
+          <md-slide-toggle [color]="'warn'" [checked]="checked"
+                           [(ngModel)]="checked" name="codesToggler">
+            {{ 'vigenere.codes' | translate }}
+          </md-slide-toggle>
+        </section>
+        <md-input-container class="full-width">
+          <textarea class="textarea-vertical" mdInput [disabled]="!encryptedText">{{encryptedText}}</textarea>
+        </md-input-container>
+      </md-card-content>
+      <md-card-actions class="ml0">
+        <button md-button (click)="encrypt()" [disabled]="cardForm.form.invalid">{{ 'app.encode' | translate }}</button>
+      </md-card-actions>
+    </form>
   </md-card>
-  <div class="col-sm-8 mt50">
-    <table class="table table-striped table-bordered">
-      <thead>
-        <tr>
-          <th>
-            {{ 'vigenere.step' | translate}}
-          </th>
-          <th>
-            {{ 'vigenere.originalLetter' | translate}}
-          </th>
-          <th>
-            {{ 'vigenere.keyLetter' | translate}}
-          </th>
-          <th>
-            {{ 'vigenere.encryptedLetter' | translate}}
-          </th>
-          <th>
-            {{ 'vigenere.encryptedText' | translate}}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let step of steps; let i = index">
-          <td>
-            {{i+1}}
-          </td>
-          <td>
-            {{step.originalLetter.word}}({{step.originalLetter.number || '?'}})
-          </td>
-          <td>
-            {{step.keyLetter?.word || '?'}}({{step.keyLetter?.number || '?'}})
-          </td>
-          <td>
-            {{step.encryptedLetter.word}}({{step.encryptedLetter.number || '?'}})
-          </td>
-          <td>
-            {{step.encryptedText}}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="table-container">
+    <md-table [dataSource]="dataSource">
+      <ng-container mdColumnDef="step">
+        <md-header-cell *mdHeaderCellDef>{{ 'vigenere.step' | translate }}</md-header-cell>
+        <md-cell *mdCellDef="let element;  let i = index"> {{i + 1}} </md-cell>
+      </ng-container>
+      <ng-container mdColumnDef="originalLetter">
+        <md-header-cell *mdHeaderCellDef>{{ 'vigenere.originalLetter' | translate }}</md-header-cell>
+        <md-cell *mdCellDef="let element">{{element.originalLetter.word}}({{element.originalLetter.number || '?'}})</md-cell>
+      </ng-container>
+      <ng-container mdColumnDef="keyLetter">
+        <md-header-cell *mdHeaderCellDef>{{ 'vigenere.keyLetter' | translate }}</md-header-cell>
+        <md-cell *mdCellDef="let element">{{element.keyLetter?.word || '?'}}({{element.keyLetter?.number || '?'}})</md-cell>
+      </ng-container>
+      <ng-container mdColumnDef="encryptedLetter">
+        <md-header-cell *mdHeaderCellDef>{{ 'vigenere.encryptedLetter' | translate }}</md-header-cell>
+        <md-cell *mdCellDef="let element">{{element.encryptedLetter.word}}({{element.encryptedLetter.number || '?'}})</md-cell>
+      </ng-container>
+      <ng-container mdColumnDef="encryptedText">
+        <md-header-cell *mdHeaderCellDef>{{ 'vigenere.encryptedText' | translate }}</md-header-cell>
+        <md-cell *mdCellDef="let element">{{element.encryptedText}} </md-cell>
+      </ng-container>
+
+      <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+      <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+    </md-table>
   </div>
 </div>

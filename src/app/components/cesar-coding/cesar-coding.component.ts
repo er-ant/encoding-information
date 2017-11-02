@@ -13,24 +13,21 @@ import { RUALPHABET, ENALPHABET } from '../../config/alphabets';
 })
 export class CesarCodingComponent {
 
-  stepEmitter: Subject<any> = new Subject();
-
+  stepEmitter: Subject<ICesarResponse[]> = new Subject();
   displayedColumns = ['step', 'encryptedText'];
   dataSource = new TableDataSource(this.stepEmitter);
 
   alphabets = [
     {
       value: 'ru',
-      name: 'Русский',
       alphabet: RUALPHABET
     }, {
       value: 'en',
-      name: 'English',
       alphabet: ENALPHABET
     }
   ];
 
-  alphabet = this.alphabets[0].value;
+  alphabet = 'ru';
   encryptedText: string;
   text: string;
   title = 'cesar';
@@ -45,7 +42,7 @@ export class CesarCodingComponent {
     return this.alphabets.find(alphabet => this.alphabet === alphabet.value).alphabet;
   }
 
-  encrypt() {
+  encrypt(): void {
     this.steps = [];
     this.cesarService
       .partEncrypting(this.shift, this.text, this.getAlphabet())
@@ -58,7 +55,6 @@ export class CesarCodingComponent {
         () => this.encryptedText = this.steps[this.steps.length - 1].encryptedText
       );
   };
-
 }
 
 export class TableDataSource extends DataSource<any> {

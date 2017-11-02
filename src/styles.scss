@@ -11,12 +11,18 @@ body {
   width: 100%;
 }
 
-.table-striped>tbody>tr:nth-of-type(odd) {
-  background-color: $background-striped-row-color;
+.textarea-vertical {
+  resize: vertical;
 }
 
+
+// Helper classes
 .mt50 {
   margin-top: 50px;
+}
+
+.mb30 {
+  margin-bottom: 30px;
 }
 
 .mb10 {

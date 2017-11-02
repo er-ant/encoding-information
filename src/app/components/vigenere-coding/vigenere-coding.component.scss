@@ -1,35 +1,47 @@
-.card {
-  margin: 50px auto 0;
-  width: 400px;
-}
-
-.full-width {
-  width: 100%;
-}
-
-.textarea-vertical {
-  resize: vertical;
-}
-
-.font-size-normal {
-  font-size: 16px;
-}
-
-.mb10 {
-  margin-bottom: 10px;
-}
-
-.mb20 {
-  margin-bottom: 20px;
-}
-
-.ml0 {
-  margin-left: 0;
-}
-
-.toggler {
-  align-content: center;
-  align-items: center;
+.flex-container {
+  align-items: flex-start;
   display: flex;
-  height: 60px;
+  flex-flow: row wrap;
+  padding: 25px;
+  position: relative;
+  width: 100%;
+
+  .card {
+    margin-bottom: 25px;
+    max-width: 400px;
+  }
+
+  .table-container {
+    flex: 5;
+    width: 100%;
+  }
+
+  .toggler {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    height: 60px;
+  }
+}
+
+
+@media (min-width: 800px) {
+  .flex-container {
+    .card {
+      margin-right: 25px;
+    }
+
+    .table-container {
+      min-width: 600px;
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .flex-container {
+    .card {
+      min-width: 200px;
+      width: 100%;
+    }
+  }
 }

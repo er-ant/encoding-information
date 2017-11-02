@@ -23,7 +23,7 @@ export class CesarCypherService {
   private getWordPosition(alphabet: Array<string>, word: string): number {
     let position: number;
 
-    alphabet.forEach((wordByArray, index) => {
+    alphabet.forEach((wordByArray, index: number) => {
       if (wordByArray === word.toLowerCase()) {
         position = index;
       }
@@ -38,7 +38,7 @@ export class CesarCypherService {
     let upperCaseFlag: boolean;
     let wordPosition: number;
 
-    alphabet.forEach((wordByArray, index) => {
+    alphabet.forEach((wordByArray, index: number) => {
       if (wordByArray === word) {
         position = index;
       } else if (wordByArray === word.toLowerCase()) {
@@ -110,7 +110,7 @@ export class CesarCypherService {
         textIterator += countColumns;
       };
 
-      key.split('').sort().forEach((item, index) => {
+      key.split('').sort().forEach((item, index: number) => {
         for (let i = 0; i < countColumns; i++) {
           if (keyAsArray[i] === item && usedWordsById.indexOf(i) < 0) {
             array.forEach(miniArray => {

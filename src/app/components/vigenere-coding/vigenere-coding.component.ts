@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { DataSource } from '@angular/cdk/collections';
 
-import { VigenereCypherService } from '../../services/vigenere-cypher.service';
+import { Subject } from 'rxjs/Subject';
+
+import { VigenereCypherService, IVigenereResponse } from '../../services/vigenere-cypher.service';
 import { RUALPHABET, ENALPHABET } from '../../config/alphabets';
 
 @Component({
@@ -8,69 +11,76 @@ import { RUALPHABET, ENALPHABET } from '../../config/alphabets';
   templateUrl: './vigenere-coding.component.html',
   styleUrls: ['./vigenere-coding.component.scss']
 })
-export class VigenereCodingComponent implements OnInit {
+export class VigenereCodingComponent {
 
-  public title = 'vigenere';
+  stepEmitter: Subject<IVigenereResponse[]> = new Subject();
+  displayedColumns = ['step', 'originalLetter', 'keyLetter', 'encryptedLetter', 'encryptedText'];
+  dataSource = new TableDataSource(this.stepEmitter);
 
-  public alphabet: any;
-  public encryptedText: string;
-  public key: string;
-  public text: string;
-
-  public color = 'warn';
-  public checked = false;
-
-  public steps = [];
-
-  public alphabets = [
+  alphabets = [
     {
       value: 'ru',
-      name: 'Русский (с ё)',
       alphabet: RUALPHABET
     }, {
       value: 'en',
-      name: 'English',
       alphabet: ENALPHABET
     }
   ];
 
-  constructor(private vigenereService: VigenereCypherService) { }
+  alphabet = 'ru';
+  encryptedText: string;
+  key: string;
+  text: string;
+  title = 'vigenere';
 
-  ngOnInit() {
-  }
+  checked = false;
+
+  steps = [];
+
+  constructor(private vigenereService: VigenereCypherService) { }
 
   private getAlphabet(): Array<string> {
     return this.alphabets.find(alphabet => this.alphabet === alphabet.value).alphabet;
   }
 
-  public encrypt() {
+  encrypt(): void {
     this.steps = [];
     if (this.checked) {
-      this
-        .vigenereService
+      this.vigenereService
         .getEncryptedWithCodes(this.key, this.text, this.getAlphabet())
         .subscribe(
           res => {
             this.steps.push(res);
-            if (this.steps[this.text.length - 1]) {
-              this.encryptedText = this.steps[this.text.length - 1].encryptedText;
-            }
-          }
+            this.stepEmitter.next(this.steps);
+          },
+          () => {},
+          () => this.encryptedText = this.steps[this.text.length - 1].encryptedText
         )
     } else {
-      this
-        .vigenereService
+      this.vigenereService
         .getEncrypted(this.key, this.text, this.getAlphabet())
         .subscribe(
           res => {
             this.steps.push(res);
-            if (this.steps[this.text.length - 1]) {
-              this.encryptedText = this.steps[this.text.length - 1].encryptedText;
-            }
-          }
+            this.stepEmitter.next(this.steps);
+          },
+          () => {},
+          () => this.encryptedText = this.steps[this.text.length - 1].encryptedText
         )
     }
-
   };
+}
 
+export class TableDataSource extends DataSource<any> {
+  constructor(public dataObserv: Subject<IVigenereResponse[]>) {
+    super();
+  }
+
+  connect(): Subject<IVigenereResponse[]> {
+    return this.dataObserv;
+  }
+
+  disconnect() {
+    this.dataObserv.unsubscribe();
+  }
 }

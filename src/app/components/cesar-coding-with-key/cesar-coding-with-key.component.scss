@@ -1,28 +1,40 @@
-.card {
-  margin: 50px auto 0;
-  width: 400px;
-}
-
-.full-width {
+.flex-container {
+  align-items: flex-start;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 25px;
+  position: relative;
   width: 100%;
+
+  .card {
+    margin-bottom: 25px;
+    max-width: 400px;
+  }
+
+  .table-container {
+    flex: 5;
+    min-width: 200px;
+    width: 100%;
+  }
 }
 
-.textarea-vertical {
-  resize: vertical;
+@media (min-width: 600px) {
+  .flex-container {
+    .card {
+      margin-right: 25px;
+    }
+
+    .table-container {
+      min-width: 400px;
+    }
+  }
 }
 
-.font-size-normal {
-  font-size: 16px;
-}
-
-.mb10 {
-  margin-bottom: 10px;
-}
-
-.mb20 {
-  margin-bottom: 20px;
-}
-
-.ml0 {
-  margin-left: 0;
+@media (max-width: 650px) {
+  .flex-container {
+    .card {
+      min-width: 200px;
+      width: 100%;
+    }
+  }
 }
