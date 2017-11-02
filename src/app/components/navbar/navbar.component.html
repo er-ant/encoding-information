@@ -1,10 +1,8 @@
 <md-toolbar class="app-navbar" color="primary">
-  <md-menu #appMenu="mdMenu">
+  <md-menu #appMenu>
     <button md-menu-item routerLink="/cesar" routerLinkActive="active"> {{ 'cesar.name' | translate }} </button>
     <button md-menu-item routerLink="/cesar/key" routerLinkActive="active"> {{ 'cesarWithKey.name' | translate }} </button>
     <button md-menu-item routerLink="/vigenere" routerLinkActive="active"> {{ 'vigenere.name' | translate }} </button>
-    <button md-menu-item routerLink="/cesar" routerLinkActive="active"> {{ 'cesar.name' | translate }} </button>
-    <button md-menu-item routerLink="/cesar" routerLinkActive="active"> {{ 'cesar.name' | translate }} </button>
   </md-menu>
 
   <button md-icon-button [mdMenuTriggerFor]="appMenu">
@@ -16,7 +14,7 @@
     {{ 'app.title' | translate }}
   </button>
 
-  <a md-button class="docs-button" href="https://github.com/er-ant/encoding-information"
+  <a md-button href="https://github.com/er-ant/encoding-information"
      aria-label="GitHub Repository" class="github-link" target="_blank">
     <img class="docs-github-logo" src="/assets/img/github.svg" alt="GitHub">
     <span>GitHub</span>
