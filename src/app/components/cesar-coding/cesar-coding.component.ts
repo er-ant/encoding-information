@@ -4,7 +4,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { Subject } from 'rxjs/Subject';
 
 import { CesarCypherService, ICesarResponse } from '../../services/cesar-cypher.service';
-import { RUALPHABET, ENALPHABET } from '../../config/alphabets';
+import { ALPHABETS } from '../../config/alphabets';
 
 @Component({
   selector: 'app-cesar-coding',
@@ -17,17 +17,8 @@ export class CesarCodingComponent {
   displayedColumns = ['step', 'encryptedText'];
   dataSource = new TableDataSource(this.stepEmitter);
 
-  alphabets = [
-    {
-      value: 'ru',
-      alphabet: RUALPHABET
-    }, {
-      value: 'en',
-      alphabet: ENALPHABET
-    }
-  ];
-
-  alphabet = 'ru';
+  alphabets = ALPHABETS;
+  alphabet = ALPHABETS[0].name;
   encryptedText: string;
   text: string;
   title = 'cesar';
@@ -38,14 +29,11 @@ export class CesarCodingComponent {
 
   constructor(private cesarService: CesarCypherService) { }
 
-  private getAlphabet(): Array<string> {
-    return this.alphabets.find(alphabet => this.alphabet === alphabet.value).alphabet;
-  }
 
   encrypt(): void {
     this.steps = [];
     this.cesarService
-      .partEncrypting(this.shift, this.text, this.getAlphabet())
+      .partEncrypting(this.shift, this.text, this.alphabet)
       .subscribe(
         res => {
           this.steps.push(res);

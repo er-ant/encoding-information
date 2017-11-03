@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { CesarCypherService, ICesarWithKeyResponse } from '../../services/cesar-cypher.service';
-import { RUALPHABET, ENALPHABET } from '../../config/alphabets';
+import { ALPHABETS } from '../../config/alphabets';
 
 @Component({
   selector: 'app-cesar-coding-with-key',
@@ -10,17 +10,8 @@ import { RUALPHABET, ENALPHABET } from '../../config/alphabets';
 })
 export class CesarCodingWithKeyComponent {
 
-  alphabets = [
-    {
-      value: 'ru',
-      alphabet: RUALPHABET
-    }, {
-      value: 'en',
-      alphabet: ENALPHABET
-    }
-  ];
-
-  alphabet = 'ru';
+  alphabets = ALPHABETS;
+  alphabet = ALPHABETS[0].name;
   encryptedText: string;
   text: string;
   title = 'cesarWithKey';
@@ -28,13 +19,9 @@ export class CesarCodingWithKeyComponent {
 
   constructor(private cesarService: CesarCypherService) { }
 
-  private getAlphabet(): Array<string> {
-    return this.alphabets.find(alphabet => this.alphabet === alphabet.value).alphabet;
-  }
-
   encrypt(): void {
     this.cesarService
-      .getEncryptedWithKey(this.key, this.text, this.getAlphabet())
+      .getEncryptedWithKey(this.key, this.text, this.alphabet)
       .subscribe(res => this.encryptedText = res.encryptedText);
   };
 }

@@ -4,7 +4,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { Subject } from 'rxjs/Subject';
 
 import { VigenereCypherService, IVigenereResponse } from '../../services/vigenere-cypher.service';
-import { RUALPHABET, ENALPHABET } from '../../config/alphabets';
+import { ALPHABETS } from '../../config/alphabets';
 
 @Component({
   selector: 'app-vigenere-coding',
@@ -17,17 +17,8 @@ export class VigenereCodingComponent {
   displayedColumns = ['step', 'originalLetter', 'keyLetter', 'encryptedLetter', 'encryptedText'];
   dataSource = new TableDataSource(this.stepEmitter);
 
-  alphabets = [
-    {
-      value: 'ru',
-      alphabet: RUALPHABET
-    }, {
-      value: 'en',
-      alphabet: ENALPHABET
-    }
-  ];
-
-  alphabet = 'ru';
+  alphabets = ALPHABETS;
+  alphabet = ALPHABETS[0].name;
   encryptedText: string;
   key: string;
   text: string;
@@ -39,15 +30,11 @@ export class VigenereCodingComponent {
 
   constructor(private vigenereService: VigenereCypherService) { }
 
-  private getAlphabet(): Array<string> {
-    return this.alphabets.find(alphabet => this.alphabet === alphabet.value).alphabet;
-  }
-
   encrypt(): void {
     this.steps = [];
     if (this.checked) {
       this.vigenereService
-        .getEncryptedWithCodes(this.key, this.text, this.getAlphabet())
+        .getEncryptedWithCodes(this.key, this.text, this.alphabet)
         .subscribe(
           res => {
             this.steps.push(res);
@@ -58,7 +45,7 @@ export class VigenereCodingComponent {
         )
     } else {
       this.vigenereService
-        .getEncrypted(this.key, this.text, this.getAlphabet())
+        .getEncrypted(this.key, this.text, this.alphabet)
         .subscribe(
           res => {
             this.steps.push(res);

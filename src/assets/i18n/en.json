@@ -1,4 +1,8 @@
 {
+  "alphabets": {
+    "ru": "Russian",
+    "en": "English"
+  },
   "app": {
     "chooseAlphabet": "Choose the alphabet",
     "shift": "Shift",
