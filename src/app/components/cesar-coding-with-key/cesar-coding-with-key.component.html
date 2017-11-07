@@ -15,8 +15,8 @@
         </md-input-container>
         <md-select class="full-width mb20" placeholder="{{ 'app.chooseAlphabet' | translate }}"
                    [(ngModel)]="alphabet" name="alphabet" required>
-          <md-option *ngFor="let alphabet of alphabets" [value]="alphabet.value">
-            {{ 'alphabets.'+ alphabet.value | translate }}
+          <md-option *ngFor="let alphabet of alphabets" [value]="alphabet.name">
+            {{ 'alphabets.'+ alphabet.name | translate }}
           </md-option>
         </md-select>
         <md-input-container class="full-width">
