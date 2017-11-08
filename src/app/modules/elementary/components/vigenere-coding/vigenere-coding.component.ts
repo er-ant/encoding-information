@@ -4,7 +4,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { Subject } from 'rxjs/Subject';
 
 import { VigenereCypherService, IVigenereResponse } from '../../services/vigenere-cypher.service';
-import { ALPHABETS } from '../../config/alphabets';
+import { ALPHABETS } from '../../../../config/alphabets';
 
 @Component({
   selector: 'app-vigenere-coding',

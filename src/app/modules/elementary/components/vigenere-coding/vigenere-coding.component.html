@@ -1,4 +1,6 @@
-<app-coding-page-header [heading]="title"></app-coding-page-header>
+<md-toolbar color="primary">
+  <h1>{{ title + '.name' | translate }}</h1>
+</md-toolbar>
 <div class="flex-container">
   <md-card class="card">
     <form #cardForm="ngForm" (ngSubmit)="encrypt()">

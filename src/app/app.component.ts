@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
 
   constructor(private translate: TranslateService) {
-    switch(navigator.language) {
+    switch (navigator.language) {
       case 'ru':
         this.translate.setDefaultLang(navigator.language);
         break;

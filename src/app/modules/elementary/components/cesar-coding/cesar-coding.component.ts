@@ -4,7 +4,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { Subject } from 'rxjs/Subject';
 
 import { CesarCypherService, ICesarResponse } from '../../services/cesar-cypher.service';
-import { ALPHABETS } from '../../config/alphabets';
+import { ALPHABETS } from '../../../../config/alphabets';
 
 @Component({
   selector: 'app-cesar-coding',
@@ -28,7 +28,6 @@ export class CesarCodingComponent {
   steps = [];
 
   constructor(private cesarService: CesarCypherService) { }
-
 
   encrypt(): void {
     this.steps = [];

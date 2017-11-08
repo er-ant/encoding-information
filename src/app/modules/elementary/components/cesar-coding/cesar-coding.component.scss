@@ -18,6 +18,16 @@
   }
 }
 
+md-toolbar {
+  padding: 30px;
+
+  h1 {
+    font-size: 30px;
+    font-weight: 300;
+    padding: 30px;
+  }
+}
+
 @media (min-width: 600px) {
   .flex-container {
     .card {

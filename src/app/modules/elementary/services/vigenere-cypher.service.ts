@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 
-import { ALPHABETS } from '../config/alphabets';
+import { ALPHABETS } from '../../../config/alphabets';
 
 export interface IVigenereResponse {
   originalLetter: IVigenereLetter;

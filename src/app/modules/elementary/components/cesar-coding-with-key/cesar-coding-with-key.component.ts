@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 import { CesarCypherService, ICesarWithKeyResponse } from '../../services/cesar-cypher.service';
-import { ALPHABETS } from '../../config/alphabets';
+import { ALPHABETS } from '../../../../config/alphabets';
 
 @Component({
   selector: 'app-cesar-coding-with-key',
