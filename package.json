@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "deploy": "ng build --prod --base-href \"https://er-ant.github.io/encoding-information/\" --aot && angular-cli-ghpages",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
@@ -37,7 +38,7 @@
     "@angular/compiler-cli": "^4.3.6",
     "@types/jasmine": "2.5.54",
     "@types/node": "~8.0.28",
-    "angular-cli-ghpages": "^0.5.1",
+    "angular-cli-ghpages": "^1.5.1",
     "codelyzer": "~3.2.0",
     "jasmine-core": "~2.8.0",
     "jasmine-spec-reporter": "~4.2.1",
