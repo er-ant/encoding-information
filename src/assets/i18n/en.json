@@ -1,4 +1,8 @@
 {
+  "alphabets": {
+    "ru": "Russian",
+    "en": "English"
+  },
   "app": {
     "chooseAlphabet": "Choose the alphabet",
     "shift": "Shift",
@@ -20,7 +24,7 @@
     "encryptedLetter": "Encrypted letter",
     "encryptedText": "Encrypted text",
     "inputKey": "Input key",
-    "keyLetter": "Letter from the key",
+    "keyLetter": "Key's letter",
     "name": "Vigenere's cypher",
     "originalLetter": "Original letter",
     "step": "Step"

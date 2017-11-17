@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, Observer } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
+
+import { ALPHABETS } from '../../../config/alphabets';
 
 export interface ICesarResponse {
   encryptedText: string;
@@ -19,10 +22,14 @@ export class CesarCypherService {
 
   constructor() { }
 
+  private getAlphabet(alphabetName: string): Array<string> {
+    return ALPHABETS.find(alphabet => alphabetName === alphabet.name).alphabet;
+  }
+
   private getWordPosition(alphabet: Array<string>, word: string): number {
     let position: number;
 
-    alphabet.forEach((wordByArray, index) => {
+    alphabet.forEach((wordByArray, index: number) => {
       if (wordByArray === word.toLowerCase()) {
         position = index;
       }
@@ -37,7 +44,7 @@ export class CesarCypherService {
     let upperCaseFlag: boolean;
     let wordPosition: number;
 
-    alphabet.forEach((wordByArray, index) => {
+    alphabet.forEach((wordByArray, index: number) => {
       if (wordByArray === word) {
         position = index;
       } else if (wordByArray === word.toLowerCase()) {
@@ -61,9 +68,10 @@ export class CesarCypherService {
     return newWord;
   }
 
-  public partEncrypting(shift: number, text: string, alphabet: Array<string>): Observable<ICesarResponse> {
-    let position: number;
+  public partEncrypting(shift: number, text: string, alphabetName: string): Observable<ICesarResponse> {
+    let alphabet = this.getAlphabet(alphabetName);
     let bufferText = '';
+    let position: number;
     let responseObject: ICesarResponse;
 
     return Observable.create((observer: Observer<ICesarResponse>) => {
@@ -80,7 +88,8 @@ export class CesarCypherService {
 
   }
 
-  public getEncryptedWithKey(key: string, text: string, alphabet: Array<string>): Observable<ICesarWithKeyResponse> {
+  public getEncryptedWithKey(key: string, text: string, alphabetName: string): Observable<ICesarWithKeyResponse> {
+    let alphabet = this.getAlphabet(alphabetName);
     let array: Array<string[]> = [];
     let arrayKeyNumbers: Array<number> = [];
     let countColumns: number;
@@ -109,7 +118,7 @@ export class CesarCypherService {
         textIterator += countColumns;
       };
 
-      key.split('').sort().forEach((item, index) => {
+      key.split('').sort().forEach((item, index: number) => {
         for (let i = 0; i < countColumns; i++) {
           if (keyAsArray[i] === item && usedWordsById.indexOf(i) < 0) {
             array.forEach(miniArray => {

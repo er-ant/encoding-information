@@ -1,0 +1,50 @@
+.flex-container {
+  align-items: flex-start;
+  display: flex;
+  flex-flow: row wrap;
+  padding: 25px;
+  position: relative;
+  width: 100%;
+
+  .card {
+    margin-bottom: 25px;
+    max-width: 400px;
+  }
+
+  .table-container {
+    flex: 5;
+    min-width: 200px;
+    width: 100%;
+  }
+}
+
+md-toolbar {
+  padding: 30px;
+
+  h1 {
+    font-size: 30px;
+    font-weight: 300;
+    padding: 30px;
+  }
+}
+
+@media (min-width: 600px) {
+  .flex-container {
+    .card {
+      margin-right: 25px;
+    }
+
+    .table-container {
+      min-width: 400px;
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .flex-container {
+    .card {
+      min-width: 200px;
+      width: 100%;
+    }
+  }
+}

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, Observer } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
+
+import { ALPHABETS } from '../../../config/alphabets';
 
 export interface IVigenereResponse {
   originalLetter: IVigenereLetter;
@@ -19,6 +22,10 @@ export class VigenereCypherService {
 
   constructor() { }
 
+  private getAlphabet(alphabetName: string): Array<string> {
+    return ALPHABETS.find(alphabet => alphabetName === alphabet.name).alphabet;
+  }
+
   private getWordPosition(alphabet: Array<string>, word: string): number {
     let position: number;
 
@@ -31,16 +38,17 @@ export class VigenereCypherService {
     return position;
   }
 
-  public getEncrypted(key: string, text: string, alphabet: Array<string>):
+  public getEncrypted(key: string, text: string, alphabetName: string):
   Observable<IVigenereResponse> {
-    let encryptedText = '';
+    let alphabet = this.getAlphabet(alphabetName);
     let encryptedLetter: string;
+    let encryptedText = '';
     let iterator = 0;
-    let keyWordPosition: number;
-    let textWordposition: number;
     let keyArray: Array<string>;
-    let textArray: Array<string>;
+    let keyWordPosition: number;
     let responseObject: IVigenereResponse;
+    let textArray: Array<string>;
+    let textWordposition: number;
 
     return Observable.create((observer: Observer<IVigenereResponse>) => {
       keyArray =
@@ -99,8 +107,9 @@ export class VigenereCypherService {
     });
   }
 
-  public getEncryptedWithCodes(key: string, text: string, alphabet: Array<string>):
+  public getEncryptedWithCodes(key: string, text: string, alphabetName: string):
   Observable<IVigenereResponse> {
+    let alphabet = this.getAlphabet(alphabetName);
     let encryptedText = '';
     let encryptedLetter: string;
     let iterator = 0;
@@ -133,7 +142,7 @@ export class VigenereCypherService {
             encryptedLetter = String.fromCharCode(textWordposition + keyWordPosition);
             encryptedText += encryptedLetter;
           } else {
-            encryptedLetter = String.fromCharCode(textWordposition + keyWordPosition - maxSymbols)
+            encryptedLetter = String.fromCharCode(textWordposition + keyWordPosition - maxSymbols);
             encryptedText += encryptedLetter;
           }
 
