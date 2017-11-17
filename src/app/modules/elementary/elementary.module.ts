@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, InjectionToken } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
@@ -21,6 +21,9 @@ import { MdSelectModule } from '@angular/material';
 import { MdSlideToggleModule } from '@angular/material';
 import { MdSliderModule } from '@angular/material';
 import { MdTableModule } from '@angular/material';
+
+import { ALPHABETS } from '../../config/alphabets';
+
 
 @NgModule({
   imports: [
@@ -48,7 +51,8 @@ import { MdTableModule } from '@angular/material';
   ],
   providers: [
     CesarCypherService,
-    VigenereCypherService
+    VigenereCypherService,
+    { provide: 'alphabets', useValue: ALPHABETS }
   ]
 })
 export class ElementaryModule { }

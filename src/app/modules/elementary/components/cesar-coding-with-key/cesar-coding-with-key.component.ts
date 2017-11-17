@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 
 import { CesarCypherService, ICesarWithKeyResponse } from '../../services/cesar-cypher.service';
 import { ALPHABETS } from '../../../../config/alphabets';
@@ -10,17 +10,17 @@ import { ALPHABETS } from '../../../../config/alphabets';
 })
 export class CesarCodingWithKeyComponent {
 
-  alphabets = ALPHABETS;
-  alphabet = ALPHABETS[0].name;
+  alphabet = this.alphabets[0].name;
   encryptedText: string;
   text: string;
   title = 'cesarWithKey';
   key: string;
 
-  constructor(private cesarService: CesarCypherService) { }
+  constructor(private _cesarService: CesarCypherService,
+              @Inject('alphabets') public alphabets) { }
 
   encrypt(): void {
-    this.cesarService
+    this._cesarService
       .getEncryptedWithKey(this.key, this.text, this.alphabet)
       .subscribe(res => this.encryptedText = res.encryptedText);
   };

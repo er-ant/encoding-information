@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 
 import { Subject } from 'rxjs/Subject';
 
 import { CesarCypherService, ICesarResponse } from '../../services/cesar-cypher.service';
-import { ALPHABETS } from '../../../../config/alphabets';
 
 @Component({
   selector: 'app-cesar-coding',
@@ -17,8 +16,7 @@ export class CesarCodingComponent {
   displayedColumns = ['step', 'encryptedText'];
   dataSource = new TableDataSource(this.stepEmitter);
 
-  alphabets = ALPHABETS;
-  alphabet = ALPHABETS[0].name;
+  alphabet = this.alphabets[0].name;
   encryptedText: string;
   text: string;
   title = 'cesar';
@@ -27,11 +25,12 @@ export class CesarCodingComponent {
 
   steps = [];
 
-  constructor(private cesarService: CesarCypherService) { }
+  constructor(private _cesarService: CesarCypherService,
+              @Inject('alphabets') public alphabets) { }
 
   encrypt(): void {
     this.steps = [];
-    this.cesarService
+    this._cesarService
       .partEncrypting(this.shift, this.text, this.alphabet)
       .subscribe(
         res => {
