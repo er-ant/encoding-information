@@ -1,6 +1,6 @@
 # Coding-Information-Algorithms
 
-Open-source project for visualising coding information algorithms. Hosted via gh-pages. [Link](https://er-ant.github.io/encoding-information).
+Open-source project for visualising coding information algorithms. Hosted via gh-pages. [Link](https://er-ant.github.io/encoding-information)
 
 ## Development server
 
