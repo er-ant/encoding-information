@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "deploy": "ng build --prod --base-href \"https://er-ant.github.io/encoding-information/\" --aot && angular-cli-ghpages",
+    "deploy": "ng build --prod --base-href \"https://er-ant.github.io/encoding-information/\" && angular-cli-ghpages",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
