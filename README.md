@@ -1,6 +1,6 @@
 # Coding-Information-Algorithms
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.3.
+Open-source project for visualising coding information algorithms. Hosted via gh-pages. [Link](https://er-ant.github.io/encoding-information)
 
 ## Development server
 
