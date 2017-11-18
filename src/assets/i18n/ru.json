@@ -19,6 +19,14 @@
     "name": "Шифр Цезаря с ключом",
     "inputKey": "Введите ключ"
   },
+  "dashboard": {
+    "advancedModuleName": "Продвинутые алгоритмы",
+    "cesarAlgorithmName": "Алгоритм цезаря",
+    "cesarWithKeyAlgorithmName": "Алгоритм цезаря с ключом",
+    "elementaryModuleName": "Элементарные алгоритмы",
+    "soon": "Скоро",
+    "vigenereAlgorithmName": "Шифрование Виженера"
+  },
   "vigenere": {
     "codes": "По кодам символов",
     "name": "Шифр Виженера",

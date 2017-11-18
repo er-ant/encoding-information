@@ -1,3 +1,26 @@
-<p>
-  dashboard works!
-</p>
+<div class="flex-wrapper">
+  <div class="flex-row">
+    <h1>{{ 'dashboard.elementaryModuleName' | translate }}</h1>
+    <a routerLink="/cesar">
+      <md-card>
+        <md-card-title>{{ 'dashboard.cesarAlgorithmName' | translate }}</md-card-title>
+      </md-card>
+    </a>
+    <a routerLink="/cesar/key">
+      <md-card>
+        <md-card-title>{{ 'dashboard.cesarWithKeyAlgorithmName' | translate }}</md-card-title>
+      </md-card>
+    </a>
+    <a routerLink="/vigenere">
+      <md-card>
+        <md-card-title>{{ 'dashboard.vigenereAlgorithmName' | translate }}</md-card-title>
+      </md-card>
+    </a>
+  </div>
+  <div class="flex-row">
+    <h1>{{ 'dashboard.advancedModuleName' | translate }}</h1>
+    <md-card>
+      <md-card-title>{{ 'dashboard.soon' | translate }}</md-card-title>
+    </md-card>
+  </div>
+</div>
