@@ -1,3 +1,5 @@
+$black-text-link: #000;
+
 .flex-wrapper {
   display: flex;
   margin: 50px auto 0;
@@ -8,6 +10,17 @@
     justify-content: flex-start;
     margin: 0 auto;
     width: 75%;
+
+    md-card {
+      a {
+        color: $black-text-link;
+
+        &:active,
+        &:hover {
+          color: $black-text-link;
+        }
+      }
+    }
 
     h1 {
       margin-bottom: 15px;
