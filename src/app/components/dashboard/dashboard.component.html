@@ -1,26 +1,28 @@
 <div class="flex-wrapper">
   <div class="flex-row">
     <h1>{{ 'dashboard.elementaryModuleName' | translate }}</h1>
-    <a routerLink="/cesar">
-      <md-card>
+    <md-card md-ripple>
+      <a routerLink="/cesar">
         <md-card-title>{{ 'dashboard.cesarAlgorithmName' | translate }}</md-card-title>
-      </md-card>
-    </a>
-    <a routerLink="/cesar/key">
-      <md-card>
+      </a>
+    </md-card>
+    <md-card md-ripple>
+      <a routerLink="/cesar/key">
         <md-card-title>{{ 'dashboard.cesarWithKeyAlgorithmName' | translate }}</md-card-title>
-      </md-card>
-    </a>
-    <a routerLink="/vigenere">
-      <md-card>
+      </a>
+    </md-card>
+    <md-card md-ripple>
+      <a routerLink="/vigenere">
         <md-card-title>{{ 'dashboard.vigenereAlgorithmName' | translate }}</md-card-title>
-      </md-card>
-    </a>
+      </a>
+    </md-card>
   </div>
   <div class="flex-row">
     <h1>{{ 'dashboard.advancedModuleName' | translate }}</h1>
-    <md-card>
-      <md-card-title>{{ 'dashboard.soon' | translate }}</md-card-title>
+    <md-card md-ripple>
+      <a>
+        <md-card-title>{{ 'dashboard.soon' | translate }}</md-card-title>
+      </a>
     </md-card>
   </div>
 </div>

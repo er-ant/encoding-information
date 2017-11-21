@@ -3,3 +3,5 @@ files:
     - 'src/**/*.s+(a|c)ss'
   ignore:
     - 'node_modules/**/*'
+rules:
+  nesting-depth: 0
