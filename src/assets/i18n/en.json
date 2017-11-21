@@ -19,6 +19,14 @@
     "name": "Cesar's cypher with key",
     "inputKey": "Input key"
   },
+  "dashboard": {
+    "advancedModuleName": "Advanced algorithms",
+    "cesarAlgorithmName": "Cesar algorithm",
+    "cesarWithKeyAlgorithmName": "Cesar algorithm with key algorithm",
+    "elementaryModuleName": "Elementary algorithms",
+    "soon": "Soon",
+    "vigenereAlgorithmName": "Vigenere encoding"
+  },
   "vigenere": {
     "codes": "By character codes",
     "encryptedLetter": "Encrypted letter",
