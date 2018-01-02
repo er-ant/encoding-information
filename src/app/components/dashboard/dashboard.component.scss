@@ -1,3 +1,5 @@
+@import '../../../styles';
+
 $black-text-link: #000;
 
 .flex-wrapper {
@@ -23,6 +25,7 @@ $black-text-link: #000;
     }
 
     h1 {
+      color: $header-dark-color;
       margin-bottom: 15px;
       text-align: center;
     }

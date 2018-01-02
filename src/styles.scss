@@ -1,4 +1,9 @@
 $background-striped-row-color: #eee;
+$header-dark-color: #333;
+
+* {
+  box-sizing: border-box;
+}
 
 body {
   height: 100%;
@@ -7,6 +12,23 @@ body {
   width: 100%;
 }
 
+
+h1 {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 36px;
+  font-weight: 500;
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+
+// Helper classes
 .full-width {
   width: 100%;
 }
@@ -15,8 +37,6 @@ body {
   resize: vertical;
 }
 
-
-// Helper classes
 .mt50 {
   margin-top: 50px;
 }
