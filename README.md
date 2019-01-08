@@ -1,4 +1,4 @@
-# Coding-Information-Algorithms
+# Coding-Information-Algorithms [DEPRECATED]
 
 Open-source project for visualising coding information algorithms. Hosted via gh-pages. [Link](https://er-ant.github.io/encoding-information)
 
